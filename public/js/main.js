@@ -13,11 +13,11 @@ window.onload = function() {
 			//layer.set({'interactivity': 'precinct, complaints'});
 			//var sublayer = layer.getSubLayer(0);
 			if ('getSubLayer' in layer) {
-				layer.getSubLayer(0).set({'interactivity': 'precinct, complaints, complaints_per_10000'});
+				layer.getSubLayer(0).set({'interactivity': 'precinct, complaints, complaints_per_10000, white, black, hispanic, asian'});
 			}
 			//console.log(layer);
 			layer.on('featureClick', function(e, latlng, pos, data, subLayerIndex) {
-				console.log('data: ' + JSON.stringify(latlng));
+				console.log('data: ' + JSON.stringify(data));
 				$('#precinct .precinct-instruction').hide();
 				$('#precinct .precinct-content').show();
 				if ('precinct' in data) {
@@ -25,35 +25,41 @@ window.onload = function() {
 					$('#precinct .precinct-content h4 span').text(data.precinct);
 					$('#precinct .precinct-content #complaints span').text(data.complaints);
 					$('#precinct .precinct-content #complaints_per_10000 span').text(data.complaints_per_10000);
-					var data = [{
-						value: 45.2,
-						label: 'White',
-						color: '#FECC5C',
-						fillColor: '#FECC5C',
-					}, {
-						value: 27.2,
-						label: 'Black/African American',
-						color: '#FD8D3C',
-						fillColor: '#FD8D3C',
-					}, {
-						value: 16.2,
-						label: 'Hispanic/Latino',
-						color: '#F03B20',
-						fillColor: '#F03B20',
-					}, {
-						value: 7.9,
-						label: 'Asian',
-						color: '#BD0026',
-						fillColor: '#BD0026',
-					}]
+
 					if (precinctByRaceChart) {
 						precinctByRaceChart.destroy();
+						precinctByRaceChart = null;
+						$('#precinct-by-race').hide();
 					}
-					var options = {
-            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>;color: white\"><%if(segments[i].label){%><%=segments[i].label%><%}%></span></li><%}%></ul>"
-					};
-          var precinctByRaceChart = new Chart(precinctByRaceCtx).Doughnut(data, options);
-					$("#precinct-by-race-legend").html(precinctByRaceChart.generateLegend());
+					if ('asian' in data) {
+						$('#precinct-by-race').show();
+						var data = [{
+              value: data.white,
+              label: 'White',
+              color: '#FECC5C',
+              fillColor: '#FECC5C',
+            }, {
+              value: data.black,
+              label: 'Black/African American',
+              color: '#FD8D3C',
+              fillColor: '#FD8D3C',
+            }, {
+              value: data.hispanic,
+              label: 'Hispanic/Latino',
+              color: '#F03B20',
+              fillColor: '#F03B20',
+            }, {
+              value: data.asian,
+              label: 'Asian',
+              color: '#BD0026',
+              fillColor: '#BD0026',
+            }];
+						var options = {
+							legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>;color: white\"><%if(segments[i].label){%><%=segments[i].label%><%}%></span></li><%}%></ul>"
+						};
+						precinctByRaceChart = new Chart(precinctByRaceCtx).Doughnut(data, options);
+						$("#precinct-by-race-legend").html(precinctByRaceChart.generateLegend());
+					}
 				}
 			});
 		}
