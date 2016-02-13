@@ -6,17 +6,14 @@ section#main {
 	margin-right: auto;
 	margin-left: auto;
 }
-
 article#content {
 	margin: 50px 0px;
 }
-
 div.tabs {
 	border: 1px solid #ddd;
 	border-radius: 0px 0px 4px 4px;
 	border-top: none;
 }
-
 h4 {
 	padding: 20px 0px 10px 0px;
 }
