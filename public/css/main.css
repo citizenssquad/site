@@ -29,13 +29,23 @@ section#CCRB {
 	section#CCRB {
 		margin-right: 10%;
 	}
-
+div#bottom {
+	width: 1px;
+}
+div.clear{
+	clear: both;
+}
 /*******************
    CONTENT STYLES
 *******************/
 
 div[role="tabpanel"] {
 	padding: 30px 20px;
+}
+
+span#pa {
+	font-weight: bold;
+	color: ;
 }
 
 
