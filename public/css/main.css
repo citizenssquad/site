@@ -17,6 +17,19 @@ div.tabs {
 	border-top: none;
 }
 
+section#feedback,
+section#CCRB {
+	border: 1px solid #ddd;
+	border-radius: 0px 0px 4px 4px;
+	float: left;
+	width: 45%;
+	margin: 20px auto 0px auto;
+	padding: 30px;
+}
+	section#CCRB {
+		margin-right: 10%;
+	}
+
 /*******************
    CONTENT STYLES
 *******************/
@@ -25,7 +38,4 @@ div[role="tabpanel"] {
 	padding: 30px 20px;
 }
 
-/*div#precinct,div#rep {
-	display: none;
-}*/
 
