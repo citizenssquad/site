@@ -17,10 +17,11 @@ window.onload = function() {
 			}
 			//console.log(layer);
 			layer.on('featureClick', function(e, latlng, pos, data, subLayerIndex) {
-				console.log('data: ' + JSON.stringify(data));
+				console.log('data: ' + JSON.stringify(latlng));
 				$('#precinct .precinct-instruction').hide();
 				$('#precinct .precinct-content').show();
 				if ('precinct' in data) {
+					legislatorLookUp(latlng[0], latlng[1]);
 					$('#precinct .precinct-content h4 span').text(data.precinct);
 					$('#precinct .precinct-content #complaints span').text(data.complaints);
 					$('#precinct .precinct-content #complaints_per_10000 span').text(data.complaints_per_10000);
@@ -85,18 +86,19 @@ $(function(){
 function legislatorLookUp(lat,long) {
 	var url = 'http://openstates.org/api/v1//legislators/geo/?lat=' + lat + '&long=' + long + '&apikey=0c92270f55bd46b78e61cceedb25b0ce';
 
-	$.getJSON(url, function() {
+	$.getJSON(url, function(data) {
 
 		var nyLegislators = [];
 
-		$.each(data, function() {
-			$('div#legislators').empty();
-			$.append(
-				'<h5>'+data.full_name+'</h5>'+
-				'<p class="email"><strong>Email</strong>: '+ data.email +'</p>'+
-				'<p class="phone"><strong>Office</strong>: '+ data.offices[0]['phone'] +'</p>'+
-				'<p class="phone"><strong>Fax</strong>: '+ data.offices[0]['fax'] +'</p>'+
-				'<p class="address"><strong>Address</strong>: '+ data.offices[0]['address'] +'</p>'
+		$('div#legislators').empty();
+		$.each(data, function(index, rep) {
+			console.log(JSON.stringify(rep));
+			$('div#legislators').append(
+				'<h5>'+rep.full_name+'</h5>'+
+				'<p class="email"><strong>Email</strong>: '+ rep.email +'</p>'+
+				'<p class="phone"><strong>Office</strong>: '+ rep.offices[0]['phone'] +'</p>'+
+				'<p class="phone"><strong>Fax</strong>: '+ rep.offices[0]['fax'] +'</p>'+
+				'<p class="address"><strong>Address</strong>: '+ rep.offices[0]['address'] +'</p>'
 				);
 			
 		});
