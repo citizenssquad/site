@@ -1,0 +1,27 @@
+/****************
+	BASE STYLES
+****************/
+section#main {
+	width: 75%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+article#content {
+	margin: 50px 0px;
+}
+
+div {
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	border-top: none;
+}
+
+/*******************
+   CONTENT STYLES
+*******************/
+
+div#overview {
+	padding: 30px 20px;
+}
+
