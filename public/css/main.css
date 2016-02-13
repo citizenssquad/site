@@ -17,7 +17,7 @@ div.tabs {
 	border-top: none;
 }
 
-h4 {
+.tabs h4 {
 	padding: 20px 0px 10px 0px;
 }
 section#feedback,
@@ -55,4 +55,11 @@ div#pa-details {
 	padding-top: 20px;
 }
 
+.doughnut-legend {
+  list-style-type: none;
+}
+
+.doughnut-legend span {
+	padding: 2px;
+}
 

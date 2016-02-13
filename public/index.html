@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
     <style>
       html, body, #map {
         height: 500px;
@@ -17,7 +18,7 @@
     </style>
   </head>
   <body>
-      <div id="map"></div>
+    <div id="map"></div>
     <section id="main">
       <h1>Citizens Squad</h1>
       <p>Inspiring all citizens to take political action to stop abusive policing.</p>
@@ -37,9 +38,15 @@
               <p>Citizens working together to bring justivce reform. <strong>#SquadGoals</strong>.</p>      
             </div>
             <div role="tabpanel" class="tab-pane" id="precinct">
-              <p>PRECINCT</p>
-              <p>The 2016 campaign has seen candidates finally address systemic racism and police militation, addressing what some people have felt all their lives. Having this conversation started is a great start but we need more than that, we need action. Black Lives Matter groups have put police brutality into the forefront, making candidates to at least address this in their debates but we shouldn't stop here. Citizens need to collectively contact their representative to make real change in the streets. We need to use technology to empower and spread information that's already out their about any oversteps of authority.</p>
-              <p>Citizens working together to bring justivce reform. #SquadGoals.</p>     
+              <h4 class="precinct-instruction">Click a Precinct in the map.</h4>
+              <div class="precinct-content" style="display: none">
+                <h4>Precinct <span></span></h4>
+                <p id="complaints">Complaints: <span></span></p>
+                <p id="complaints_per_10000">Complaints/10000: <span></span></p>
+                <h5>Ethnic/Racial Distribution</h5>
+                <canvas id="precinct-by-race-chart"></canvas>
+                <div id="precinct-by-race-legend"></div>
+              </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="rep">
               <h4>Find your Representative</h4>
