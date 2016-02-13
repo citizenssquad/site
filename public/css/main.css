@@ -17,17 +17,20 @@ div.tabs {
 	border-top: none;
 }
 
+h4 {
+	padding: 20px 0px 10px 0px;
+}
 section#feedback,
 section#CCRB {
 	border: 1px solid #ddd;
 	border-radius: 0px 0px 4px 4px;
 	float: left;
-	width: 45%;
+	width: 49%;
 	margin: 20px auto 0px auto;
 	padding: 30px;
 }
 	section#CCRB {
-		margin-right: 10%;
+		margin-right: 2%;
 	}
 div#bottom {
 	width: 1px;
@@ -46,6 +49,10 @@ div[role="tabpanel"] {
 span#pa {
 	font-weight: bold;
 	color: ;
+}
+
+div#pa-details {
+	padding-top: 20px;
 }
 
 
