@@ -65,6 +65,9 @@ window.onload = function() {
 		}
 	});
 }
+
+$('#intro').hide();
+
 $(function(){
 
 	$('[data-tab="overview"] a').click(function (e) {
@@ -92,6 +95,9 @@ $(function(){
 function legislatorLookUp(lat,long) {
 	var url = 'http://openstates.org/api/v1//legislators/geo/?lat=' + lat + '&long=' + long + '&apikey=0c92270f55bd46b78e61cceedb25b0ce';
 
+	$('#instruction').hide();
+	$('#intro').show();
+
 	$.getJSON(url, function(data) {
 
 		var nyLegislators = [];
@@ -100,11 +106,11 @@ function legislatorLookUp(lat,long) {
 		$.each(data, function(index, rep) {
 			console.log(JSON.stringify(rep));
 			$('div#legislators').append(
-				'<h5>'+rep.full_name+'</h5>'+
-				'<p class="email"><strong>Email</strong>: '+ rep.email +'</p>'+
-				'<p class="phone"><strong>Office</strong>: '+ rep.offices[0]['phone'] +'</p>'+
-				'<p class="phone"><strong>Fax</strong>: '+ rep.offices[0]['fax'] +'</p>'+
-				'<p class="address"><strong>Address</strong>: '+ rep.offices[0]['address'] +'</p>'
+				'<div class="local-rep"> <h5>'+rep.full_name+'</h5>'+
+				'<strong>Email</strong>: '+ rep.email +'<br />'+
+				'<strong>Office</strong>: '+ rep.offices[0]['phone'] +'<br />'+
+				'<strong>Fax</strong>: '+ rep.offices[0]['fax'] +'<br />'+
+				'<strong>Address</strong>: '+ rep.offices[0]['address'] +'</p></div>'
 				);
 			
 		});

@@ -45,17 +45,24 @@ div[role="tabpanel"] {
 
 span#pa {
 	font-weight: bold;
-	color: ;
 }
 
 div#pa-details {
 	padding-top: 20px;
 }
 
-.doughnut-legend {
+.doughnut-legend,
+p#intro {
   list-style-type: none;
 }
 
 .doughnut-legend span {
 	padding: 2px;
+}
+
+div.local-rep {
+	padding-bottom: 15px;
+}
+	div.local-rep p {
+
 }
