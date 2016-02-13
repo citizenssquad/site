@@ -11,9 +11,9 @@ article#content {
 	margin: 50px 0px;
 }
 
-div {
+div.tabs {
 	border: 1px solid #ddd;
-	border-radius: 4px;
+	border-radius: 0px 0px 4px 4px;
 	border-top: none;
 }
 
@@ -21,7 +21,11 @@ div {
    CONTENT STYLES
 *******************/
 
-div#overview {
+div[role="tabpanel"] {
 	padding: 30px 20px;
 }
+
+/*div#precinct,div#rep {
+	display: none;
+}*/
 

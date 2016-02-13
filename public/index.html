@@ -3,25 +3,42 @@
   <head>
     <title>Citizens Squad</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" type="css/text" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   </head>
   <body>
     <iframe width="100%" height="520" frameborder="0" src="https://efuquen.cartodb.com/viz/dd5312ae-d222-11e5-999d-0e787de82d45/embed_map" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
     <section id="main">
-    	<h1>Citizen Squad</h1>
+    	<h1>Citizens Squad</h1>
 			<p>Inspiring all citizens to take political action to stop abusive policing.</p>
 
 			<article id="content">
-				<ul class="nav nav-tabs">
-				  <li role="presentation" class="active"><a href="#">Overview</a></li>
-				  <li role="presentation"><a href="#">Precint Makeup</a></li>
-				  <li role="presentation"><a href="#">Contact Your Representative</a></li>
-				</ul>
-				<div id="overview">
-					<p>With the rise of police violence across the nation, people have been inspired to speaking out against neglience and outright absuive, violent and often times deadly use of force.</p>
-					<p>The 2016 campaign has seen candidates finally address systemic racism and police militation, addressing what some people have felt all their lives. Having this conversation started is a great start but we need more than that, we need action. Black Lives Matter groups have put police brutality into the forefront, making candidates to at least address this in their debates but we shouldn't stop here. Citizens need to collectively contact their representative to make real change in the streets. We need to use technology to empower and spread information that's already out their about any oversteps of authority.</p>
-					<p>Citizens working together to bring justivce reform. #SquadGoals.</p>			
+				<div class="tab-content">
+					<ul class="nav nav-tabs" role="tablist">
+					  <li role="presentation" class="tab-pane active" data-tab="overview"><a href="#overview" aria-controls="profile" role="tab" data-toggle="tab">Overview</a></li>
+					  <li role="presentation" class="tab-pane" data-tab="precint"><a href="#precinct" aria-controls="profile" role="tab" data-toggle="tab">Precinct Makeup</a></li>
+					  <li role="presentation" class="tab-pane" data-tab="rep"><a href="#rep" aria-controls="profile" role="tab" data-toggle="tab">Contact Your Representative</a></li>
+					</ul>
+					<div class="tab-content tabs">
+						<div role="tabpanel" class="tab-pane active" id="overview">
+							<p>With the rise of police violence across the nation, people have been inspired to speaking out against neglience and outright absuive, violent and often times deadly use of force.</p>
+							<p>The 2016 campaign has seen candidates finally address systemic racism and police militation, addressing what some people have felt all their lives. Having this conversation started is a great start but we need more than that, we need action. Black Lives Matter groups have put police brutality into the forefront, making candidates to at least address this in their debates but we shouldn't stop here. Citizens need to collectively contact their representative to make real change in the streets. We need to use technology to empower and spread information that's already out their about any oversteps of authority.</p>
+							<p>Citizens working together to bring justivce reform. <strong>#SquadGoals</strong>.</p>			
+						</div>
+						<div role="tabpanel" class="tab-pane" id="precinct">
+							<p>PRECINCT</p>
+							<p>The 2016 campaign has seen candidates finally address systemic racism and police militation, addressing what some people have felt all their lives. Having this conversation started is a great start but we need more than that, we need action. Black Lives Matter groups have put police brutality into the forefront, making candidates to at least address this in their debates but we shouldn't stop here. Citizens need to collectively contact their representative to make real change in the streets. We need to use technology to empower and spread information that's already out their about any oversteps of authority.</p>
+							<p>Citizens working together to bring justivce reform. #SquadGoals.</p>			
+						</div>
+						<div role="tabpanel" class="tab-pane" id="rep">
+							<p>REPRESENTATIVE</p>
+							<p>The 2016 campaign has seen candidates finally address systemic racism and police militation, addressing what some people have felt all their lives. Having this conversation started is a great start but we need more than that, we need action. Black Lives Matter groups have put police brutality into the forefront, making candidates to at least address this in their debates but we shouldn't stop here. Citizens need to collectively contact their representative to make real change in the streets. We need to use technology to empower and spread information that's already out their about any oversteps of authority.</p>
+							<p>Citizens working together to bring justivce reform. #SquadGoals.</p>			
+						</div>
+					</div>
+
+					
 				</div>
 			</article>
     </section>
