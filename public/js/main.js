@@ -4,66 +4,69 @@ var precinctByRaceChart = null;
 window.onload = function() {
 	var visUrl = 'https://efuquen.cartodb.com/api/v2/viz/dd5312ae-d222-11e5-999d-0e787de82d45/viz.json';
   cartodb.createVis('map', visUrl).done(function(vis) {
-		console.log(vis);
 		var layers = vis.getLayers();
-		console.log(layers);
 		for (var i = 0; i < layers.length; i ++) {
 			var layer = layers[i];
-			//layer.set();
-			//layer.set({'interactivity': 'precinct, complaints'});
-			//var sublayer = layer.getSubLayer(0);
 			if ('getSubLayer' in layer) {
 				layer.getSubLayer(0).set({'interactivity': 'precinct, complaints, complaints_per_10000, white, black, hispanic, asian'});
 			}
-			//console.log(layer);
 			layer.on('featureClick', function(e, latlng, pos, data, subLayerIndex) {
-				console.log('data: ' + JSON.stringify(data));
-				$('#precinct .precinct-instruction').hide();
-				$('#precinct .precinct-content').show();
-				if ('precinct' in data) {
-					legislatorLookUp(latlng[0], latlng[1]);
-					$('#precinct .precinct-content h4 span').text(data.precinct);
-					$('#precinct .precinct-content #complaints span').text(data.complaints);
-					$('#precinct .precinct-content #complaints_per_10000 span').text(data.complaints_per_10000);
-
-					if (precinctByRaceChart) {
-						precinctByRaceChart.destroy();
-						precinctByRaceChart = null;
-						$('#precinct-by-race').hide();
-					}
-					if ('asian' in data) {
-						$('#precinct-by-race').show();
-						var data = [{
-              value: data.white,
-              label: 'White',
-              color: '#FECC5C',
-              fillColor: '#FECC5C',
-            }, {
-              value: data.black,
-              label: 'Black/African American',
-              color: '#FD8D3C',
-              fillColor: '#FD8D3C',
-            }, {
-              value: data.hispanic,
-              label: 'Hispanic/Latino',
-              color: '#F03B20',
-              fillColor: '#F03B20',
-            }, {
-              value: data.asian,
-              label: 'Asian',
-              color: '#BD0026',
-              fillColor: '#BD0026',
-            }];
-						var options = {
-							legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>;color: white\"><%if(segments[i].label){%><%=segments[i].label%><%}%></span></li><%}%></ul>"
-						};
-						precinctByRaceChart = new Chart(precinctByRaceCtx).Doughnut(data, options);
-						$("#precinct-by-race-legend").html(precinctByRaceChart.generateLegend());
-					}
-				}
+        var activeDataTab = $('li.tab-pane.active').attr('data-tab');
+        if(activeDataTab === 'rep') {
+          legislatorLookUp(latlng[0], latlng[1]);
+        }
+				if(activeDataTab === 'precinct') {
+          precinctLookUp(data);
+        }
 			});
 		}
 	});
+}
+
+function precinctLookUp(data) {
+  $('#precinct .precinct-instruction').hide();
+  $('#precinct .precinct-content').show();
+  if ('precinct' in data) {
+    $('#precinct .precinct-content h4 span').text(data.precinct);
+    $('#precinct .precinct-content #complaints span').text(data.complaints);
+    $('#precinct .precinct-content #complaints_per_10000 span').text(data.complaints_per_10000);
+
+    if (precinctByRaceChart) {
+      precinctByRaceChart.destroy();
+      precinctByRaceChart = null;
+      $('#precinct-by-race').hide();
+    }
+    if ('asian' in data) {
+      $('#precinct-by-race').show();
+      var chartData = [{
+        value: data.white,
+        label: 'White',
+        color: '#FECC5C',
+        fillColor: '#FECC5C',
+      }, {
+        value: data.asian,
+        label: 'Asian',
+        color: '#FD8D3C',
+        fillColor: '#FD8D3C',
+      }, {
+        value: data.hispanic,
+        label: 'Hispanic/Latino',
+        color: '#F03B20',
+        fillColor: '#F03B20',
+      }, {
+        value: data.black,
+        label: 'Black/African American',
+        color: '#BD0026',
+        fillColor: '#BD0026',
+      }];
+      var chartOptions = {
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>;color: white\"><%if(segments[i].label){%><%=segments[i].label%><%}%></span></li><%}%></ul>"
+      };
+      precinctByRaceChart = new Chart(precinctByRaceCtx).Doughnut(chartData, chartOptions);
+      $("#precinct-by-race-legend").html(precinctByRaceChart.generateLegend());
+    }
+
+  }
 }
 
 $('#intro').hide();
@@ -71,24 +74,27 @@ $('#intro').hide();
 $(function(){
 
 	$('[data-tab="overview"] a').click(function (e) {
-	  e.preventDefault()
-	  $('div#overview').tab('show');
-	  $('div#precinct').tab('hide');
-	  $('div#overview').tab('hide');
+	  e.preventDefault();
+		$(this).tab('show');
+	  //$('div#overview').tab('show');
+	  //$('div#precinct').tab('hide');
+	  //$('div#overview').tab('hide');
 	})
 
 	$('[data-tab="precinct"] a').click(function (e){
-		e.preventDefault()
-		$('div#overview').tab('hide');
+		e.preventDefault();
+		$(this).tab('show');
+		/*$('div#overview').tab('hide');
 	  $('div#precinct').tab('show');
-	  $('div#overview').tab('hide');
+	  $('div#overview').tab('hide');*/
 	});
 
 	$('[data-tab="rep"] a').click(function (e){
-		e.preventDefault()
-		$('div#overview').tab('hide');
+		e.preventDefault();
+		$(this).tab('show');
+		/*$('div#overview').tab('hide');
 	  $('div#precinct').tab('hide');
-	  $('div#overview').tab('show');
+	  $('div#overview').tab('show');*/
 	});
 });
 
@@ -104,7 +110,6 @@ function legislatorLookUp(lat,long) {
 
 		$('div#legislators').empty();
 		$.each(data, function(index, rep) {
-			console.log(JSON.stringify(rep));
 			$('div#legislators').append(
 				'<div class="local-rep"> <h5>'+rep.full_name+'</h5>'+
 				'<strong>Email</strong>: '+ rep.email +'<br />'+
@@ -116,7 +121,6 @@ function legislatorLookUp(lat,long) {
 		});
 
 	});
-
 }
 
 
